@@ -1,16 +1,15 @@
-# flutter_assignment_1
+Assignment 2 – Flutter Basic Screens & Navigation
 
-A new Flutter project.
+This project contains a simple Flutter app with a dashboard and multiple screens.
+The dashboard has 4 buttons that navigate to:
 
-## Getting Started
+Arithmetic Operations
 
-This project is a starting point for a Flutter application.
+Simple Interest Calculator
 
-A few resources to get you started if this is your first Flutter project:
+Area of Circle
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Palindrome Number Checker
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Each screen takes user input using TextFields and performs basic calculations.
+The purpose of this assignment is to practice navigation, UI design, and basic Dart logic.
