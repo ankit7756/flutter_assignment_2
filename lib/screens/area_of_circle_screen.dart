@@ -20,12 +20,26 @@ class _AreaOfCircleScreenState extends State<AreaOfCircleScreen> {
         child: Column(
           children: [
             TextField(
-              onChanged: (value) => radius = double.tryParse(value) ?? 0,
-              decoration: const InputDecoration(
-                labelText: "Enter Radius",
-                border: OutlineInputBorder(),
+              // onChanged: (value) => radius = double.tryParse(value) ?? 0,
+              // decoration: const InputDecoration(
+              //   labelText: "Enter Radius",
+              //   border: OutlineInputBorder(),
+              // ),
+              // keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.red),
+                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.green),
+                  borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                ),
+                labelText: 'Enter Name',
               ),
-              keyboardType: TextInputType.number,
             ),
 
             const SizedBox(height: 12),
