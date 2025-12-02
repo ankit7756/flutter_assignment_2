@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_assignment_1/screens/column_screen.dart';
-import 'package:flutter_assignment_1/screens/flutter_layout_screen.dart';
+import 'package:flutter_assignment_1/screens/custom_layout.dart';
+import 'flexible_expanded_screen.dart';
+import 'column_screen.dart';
+import 'rich_text.dart';
+import 'container_screen.dart';
+import 'flutter_layout_screen.dart';
+import 'image_screen.dart';
 import 'arithmetic_screen.dart';
 import 'simple_interest_screen.dart';
 import 'area_of_circle_screen.dart';
@@ -26,7 +31,7 @@ class DashboardScreen extends StatelessWidget {
 
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: Column(
+        child: ListView(
           children: [
             _menuTile(
               context: context,
@@ -51,6 +56,7 @@ class DashboardScreen extends StatelessWidget {
               title: "Palindrome Checker",
               screen: const PalindromeNumberScreen(),
             ),
+
             _menuTile(
               context: context,
               title: "Layout Screen",
@@ -60,6 +66,31 @@ class DashboardScreen extends StatelessWidget {
               context: context,
               title: "Column Screen",
               screen: ColumnScreen(),
+            ),
+            _menuTile(
+              context: context,
+              title: "Container Screen",
+              screen: ContainerScreen(),
+            ),
+            _menuTile(
+              context: context,
+              title: "Image Screen",
+              screen: ImageScreen(),
+            ),
+            _menuTile(
+              context: context,
+              title: "Flexible Expanded Screen",
+              screen: FlexibleExpandedScreen(),
+            ),
+            _menuTile(
+              context: context,
+              title: "Rich Text Screen",
+              screen: RichTextScreen(),
+            ),
+            _menuTile(
+              context: context,
+              title: "Custom Layout Screen",
+              screen: CustomLayoutScreen(),
             ),
           ],
         ),

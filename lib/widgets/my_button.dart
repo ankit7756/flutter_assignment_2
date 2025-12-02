@@ -1,0 +1,31 @@
+import 'package:flutter/material.dart';
+
+class MyButton extends StatefulWidget {
+  const MyButton({super.key, required this.onPressed, required this.text});
+
+  final VoidCallback onPressed;
+  final String text;
+
+  @override
+  State<MyButton> createState() => _MyButtonState();
+}
+
+class _MyButtonState extends State<MyButton> {
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.amber,
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        ),
+        onPressed: widget.onPressed,
+        child: Text(
+          widget.text,
+          style: const TextStyle(color: Colors.white, fontSize: 20),
+        ),
+      ),
+    );
+  }
+}

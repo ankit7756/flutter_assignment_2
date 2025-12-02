@@ -8,7 +8,14 @@ class AreaOfCircleScreen extends StatefulWidget {
 }
 
 class _AreaOfCircleScreenState extends State<AreaOfCircleScreen> {
-  double radius = 0;
+  // ⭐ NEW: Controller to read radius value
+  final TextEditingController radiusController = TextEditingController(
+    text: "5",
+  );
+
+  // ⭐ NEW: Global key for form validation
+  final _formKey = GlobalKey<FormState>();
+
   double area = 0;
 
   @override
@@ -17,48 +24,69 @@ class _AreaOfCircleScreenState extends State<AreaOfCircleScreen> {
       appBar: AppBar(title: const Text("Area of Circle")),
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            TextField(
-              // onChanged: (value) => radius = double.tryParse(value) ?? 0,
-              // decoration: const InputDecoration(
-              //   labelText: "Enter Radius",
-              //   border: OutlineInputBorder(),
-              // ),
-              // keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.red),
-                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.green),
-                  borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                ),
-                labelText: 'Enter Name',
-              ),
-            ),
 
-            const SizedBox(height: 12),
+        // ⭐ NEW: Wrapping everything in a Form
+        child: Form(
+          key: _formKey,
 
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    area = 3.1416 * radius * radius;
-                  });
+          child: Column(
+            children: [
+              // ⭐ NEW: TextFormField instead of TextField
+              TextFormField(
+                controller: radiusController, // ⭐ NEW
+
+                keyboardType: TextInputType.number,
+
+                decoration: InputDecoration(
+                  labelText: 'Enter Radius',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.green),
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
+
+                // ⭐ NEW: Validation added
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Please enter radius";
+                  }
+                  if (double.tryParse(value) == null) {
+                    return "Please enter a valid number";
+                  }
+                  return null;
                 },
-                child: const Text("CALCULATE AREA"),
               ),
-            ),
 
-            const SizedBox(height: 12),
-            Text("Area: $area", style: const TextStyle(fontSize: 22)),
-          ],
+              const SizedBox(height: 12),
+
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    // ⭐ NEW: Validate before calculating
+                    if (_formKey.currentState!.validate()) {
+                      setState(() {
+                        double radius = double.parse(radiusController.text);
+                        area = 3.1416 * radius * radius;
+                      });
+                    }
+                  },
+                  child: const Text("CALCULATE AREA"),
+                ),
+              ),
+
+              const SizedBox(height: 12),
+
+              Text("Area: $area", style: const TextStyle(fontSize: 22)),
+            ],
+          ),
         ),
       ),
     );
